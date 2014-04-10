@@ -5,34 +5,86 @@
 	<groupId>org.jboss.tools.jmxconsole</groupId>
 	<artifactId>jmx-console</artifactId>
 	<packaging>war</packaging>
-	<name>jmx-console</name>
-	<version>1.0</version>
 	
-	
-	<dependencies>
+	<name>jboss-as-jmx-console</name>
+	<version>7.0</version>
 
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Dependencies>org.dom4j, org.jboss.common-core</Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- 
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jboss-common-core</artifactId>
+			<scope>provided</scope>
+			<version>${version.org.jboss.jboss-common-core}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<scope>provided</scope>
+			<version>${version.org.jboss.logging.jboss-logging}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+			<scope>provided</scope>
+			<version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec}</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<scope>provided</scope>
+			<version>${version.dom4j}</version>
+		</dependency>
+	</dependencies>
+	 -->
+		
+	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<scope>provided</scope>
 			<version>2.5</version>
 		</dependency>
-
-
 	</dependencies>
 	
+	
+	<!-- 
+	
 	<properties>
-
-        <!-- JBoss AS plugin for deployment -->
         <version.jboss.as.maven.plugin>7.1.1.Final</version.jboss.as.maven.plugin>
-
+        <version.org.jboss.jboss-common-core>2.2.17.GA</version.org.jboss.jboss-common-core>
+        <version.org.jboss.logging.jboss-logging>3.1.0.Beta3</version.org.jboss.logging.jboss-logging>
+        <version.org.jboss.logging.jboss-logging-tools>1.0.0.CR3</version.org.jboss.logging.jboss-logging-tools>
+        <version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>
+        <version.dom4j>1.6.1</version.dom4j>
     </properties>
 	
+
+	 -->
 	
+	<!-- 
+    
 	<build>
         <finalName>jmx-console</finalName>
         <plugins>
-            <!-- Force Java 6 -->
+            <!- - Force Java 6 - ->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -42,19 +94,21 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-            <!-- Deployent on AS from console -->
+            <!- - Deployent on AS from console - ->
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>${version.jboss.as.maven.plugin}</version>
             </plugin>
-            <!-- Surefire plugin before 2.9 version is buggy -->
+            <!- - Surefire plugin before 2.9 version is buggy - ->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12</version>
             </plugin>
         </plugins>
     </build>
+     -->
+    
     
     <profiles>
         <profile>

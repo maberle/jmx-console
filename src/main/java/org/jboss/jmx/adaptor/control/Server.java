@@ -86,7 +86,11 @@ public class Server
 	               domainData.put(domainName, data);
 	            }
 	            data.addData(mbeanData);
-            } catch (Exception x) {
+	            
+            } catch (java.lang.IllegalStateException ex1) {
+            	//java.lang.IllegalStateException: JBAS019905
+            	//TODO: ignore it temporarily...
+            }  catch (Exception x) {
             	x.printStackTrace();
             }
          }

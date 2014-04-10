@@ -63,7 +63,8 @@ a.soft:hover {
     COLOR: #000000
     }
 #header {
-	background-color: #F0F0F0;
+	background-color: #FF7A22;
+	background-image: url("header_bg.jpg");
 	background-repeat: no-repeat;
 	background-position: 226px 0px;
 	width: 100%;
@@ -75,7 +76,7 @@ a.soft:hover {
 	}
 #logo {
 	position: absolute;
-	top: 2px;
+	top: 4px;
 	left: 4px;
 	z-index: 200;
 }
