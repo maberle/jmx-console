@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<%@page contentType="text/html"
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
    import="java.net.*,java.io.*,java.util.*,
    javax.management.*,javax.management.modelmbean.*,
    org.jboss.jmx.adaptor.control.Server,
@@ -177,48 +177,50 @@ catch(IOException e){}
    int size = properties.keySet().size();
 %>
 
-<!-- 1 -->
+<!-- 1. Class -->
 
 <table width="100%" cellspacing="1" cellpadding="1" border="1" align="center">
- <tr>
- <th rowspan="<%= size + 1 %>">Name</th>
- <td><b>Domain</b></td>
- <td><%= objectName.getDomain() %></td>
- </tr>
+	<tr>
+		<th rowspan="<%= size + 1 %>">Name</th>
+		<td><b>Domain</b></td>
+		<td><%= objectName.getDomain() %></td>
+	</tr>
 <%
    Iterator it = properties.keySet().iterator();
    while( it.hasNext() )
    {
-     String key=(String)it.next();
-     String val=translateMetaCharacters((String)properties.get(key));
+     String key = (String)it.next();
+     String val = translateMetaCharacters((String)properties.get(key));
      out.println(" <tr><td><b>"+key+"</b></td><td>"+val+"</td></tr>");
    }
 %>
- <tr>
- <th>Java Class</th>
- <td colspan="2"><jsp:getProperty name='mbeanData' property='className'/></td>
- </tr>
- <tr>
- <th>Description</th>
- <td colspan="2"><%= fixDescription(mbeanInfo.getDescription())%></td>
- </tr>
+	<tr>
+		<th>Java Class</th>
+		<td colspan="2"><jsp:getProperty name='mbeanData' property='className'/></td>
+	</tr>
+	<tr>
+		<th>Description</th>
+		<td colspan="2"><%= fixDescription(mbeanInfo.getDescription())%></td>
+	</tr>
 </table>
 
-<!-- 2 -->
+<!-- 2. Fields -->
 <br/>
+
 <form method="post" action="HtmlAdaptor">
- <input type="hidden" name="action" value="updateAttributes" />
- <input type="hidden" name="name" value="<%= objectNameString %>" />
- <table width="100%" cellspacing="1" cellpadding="1" border="1" align="center">
-  <tr>
-   <th>Attribute Name</th>
-   <th>Access</th>
-   <th>Type</th>
-   <th>Description</th>
-   <th>Attribute Value</th>
-  </tr>
+	<input type="hidden" name="action" value="updateAttributes" />
+	<input type="hidden" name="name" value="<%= objectNameString %>" />
+	<table width="100%" cellspacing="1" cellpadding="1" border="1" align="center">
+		<tr>
+			<th>Attribute Name</th>
+			<th>Access</th>
+			<th>Type</th>
+			<th>Description</th>
+			<th>Attribute Value</th>
+		</tr>
 <%
   boolean hasWriteableAttribute=false;
+
   for(int a = 0; a < attributeInfo.length; a ++)
   {
     MBeanAttributeInfo attrInfo = attributeInfo[a];
@@ -228,12 +230,15 @@ catch(IOException e){}
     String attrValue = attrResult.getAsText();
     String access = "";
     if( attrInfo.isReadable() ) 
+    {
     	access += "R";
+    }
     if( attrInfo.isWritable() )
     {
       access += "W";
       hasWriteableAttribute=true;
     }
+    
     String attrDescription = fixDescription(attrInfo.getDescription());
     out.println("  <tr>");
     out.println("   <td class='param'>"+attrName+"</td>");
@@ -245,25 +250,25 @@ catch(IOException e){}
 
     if( attrInfo.isWritable() )
     {
-      String readonly = attrResult.editor == null ? "class='readonly' readonly" : "class='writable'";
+      String readonly = (attrResult.editor == null) ? "class='readonly' readonly" : "class='writable'";
       if( attrType.equals("boolean") || attrType.equals("java.lang.Boolean") )
       {
-        Boolean value = attrValue == null || "".equals( attrValue ) ? null : Boolean.valueOf(attrValue);
+        Boolean value = ((attrValue == null) || "".equals(attrValue)) ? null : Boolean.valueOf(attrValue);
         String trueChecked = (value == Boolean.TRUE ? "checked" : "");
         String falseChecked = (value == Boolean.FALSE ? "checked" : "");
-	String naChecked = value == null ? "checked" : "";
+		String naChecked = (value == null) ? "checked" : "";
         out.print("<input type='radio' name='"+attrName+"' value='True' "+trueChecked+"/>True");
         out.print("<input type='radio' name='"+attrName+"' value='False' "+falseChecked+"/>False");
-	// For wrappers, enable a 'null' selection
-	if ( attrType.equals( "java.lang.Boolean" ) && PropertyEditors.isNullHandlingEnabled() )
-        {
-		out.print("<input type='radio' name='"+attrName+"' value='' "+naChecked+"/>True");
-	}
+		// For wrappers, enable a 'null' selection
+		if ( attrType.equals( "java.lang.Boolean" ) && PropertyEditors.isNullHandlingEnabled() )
+	        {
+			out.print("<input type='radio' name='"+attrName+"' value='' "+naChecked+"/>True");
+		}
 
       }
       else if( attrInfo.isReadable() )
       {
-	attrValue = fixValueForAttribute(attrValue);
+		attrValue = fixValueForAttribute(attrValue);
         if (String.valueOf(attrValue).indexOf(sep) == -1)
         {
           out.print("<input type='text' size='80' name='"+attrName+"' value='"+translateMetaCharacters(attrValue)+"' "+readonly+"/>");
@@ -280,7 +285,7 @@ catch(IOException e){}
     }
     else
     {
-      if( attrType.equals("[Ljavax.management.ObjectName;") )
+      if(attrType.equals("[Ljavax.management.ObjectName;") )
       {
         ObjectName[] names = (ObjectName[]) Server.getMBeanAttributeObject(objectNameString, attrName);
         if( names != null )
@@ -328,7 +333,7 @@ catch(IOException e){}
  </table>
 </form>
 
-<!-- 3 -->
+<!-- 3. Methods -->
 <br/>
 <%
 if (operationInfo.length > 0)
@@ -369,22 +374,25 @@ if (operationInfo.length > 0)
 
       if( sig.length > 0 )
       {
-        out.println("     <table width='100%' cellspacing='1' cellpadding='1' border='0'>");
+        out.println("     <table width='100%' cellspacing='2' cellpadding='2' border='1'>");
         for(int p = 0; p < sig.length; p ++)
         {
           MBeanParameterInfo paramInfo = sig[p];
           String pname = paramInfo.getName();
           String ptype = paramInfo.getType();
+          
           if( pname == null || pname.length() == 0 || pname.equals(ptype) )
           {
             pname = "arg"+p;
           }
+          
           String pdesc = fixDescription(paramInfo.getDescription());
           out.println("      <tr>");
           out.println("       <td class='arg'>"+pname+"</td>");
           out.println("       <td class='arg'>"+ptype+"</td>");
           out.println("       <td class='arg'>"+pdesc+"</td>");
           out.print("       <td class='arg' width='50'>");
+          
           if(ptype.equals("boolean")||ptype.equals("java.lang.Boolean"))
           {
             out.print("<input type='radio' name='arg"+p+"' value='True' checked/>True");

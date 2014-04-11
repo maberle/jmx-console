@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source.
- * Copyright 2006, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2011, Red Hat, Inc., and individual contributors
  * as indicated by the @author tags. See the copyright.txt file in the
  * distribution for a full listing of individual contributors.
  *
@@ -22,27 +22,24 @@
 package org.jboss.jmx.adaptor.control;
 
 /**
- * A simple tuple of an mbean operation name,
- * index, sigature, args and operation result.
+ * A simple tuple of an mbean operation name, index, signature, args and operation result.
  *
  * @author Scott.Stark@jboss.org
- * @version $Revision: 57210 $
+ * @author Dimitris.Andreadis@jboss.org
  */
-public class OpResultInfo
-{
-   public String   name;
-   public String[] signature;
-   public String[] args;
-   public Object   result;
+public class OpResultInfo {
+    public String name;
+    public String[] signature;
+    public String[] args;
+    public Object result;
 
-   public OpResultInfo() {
-   }
+    public OpResultInfo() {
+    }
 
-   public OpResultInfo(String name, String[] signature, String[] args, Object result)
-   {
-      this.name      = name;
-      this.signature = signature;
-      this.args      = args;
-      this.result    = result;
-   }
+    public OpResultInfo(String name, String[] signature, String[] args, Object result) {
+        this.name = name;
+        this.signature = signature;
+        this.args = args;
+        this.result = result;
+    }
 }
