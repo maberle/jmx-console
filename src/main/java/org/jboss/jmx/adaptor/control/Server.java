@@ -82,6 +82,10 @@ public class Server {
                         domainData.put(domainName, data);
                     }
                     data.addData(mbeanData);
+                } catch (IllegalStateException ex1) {
+                	// java.lang.IllegalStateException: JBAS019905
+                	log.warn("Cannot get mbean info of: " + name);
+                	log.warn("java.lang.IllegalStateException: " + ex1.getMessage());
                 } catch (Exception ex) {
                 	log.error("Issue happened when get mbean info of: " + name, ex);
                 }
