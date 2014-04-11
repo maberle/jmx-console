@@ -83,7 +83,7 @@ public class Server {
                     }
                     data.addData(mbeanData);
                 } catch (Exception ex) {
-                	log.error("Issue happened when get mbean info for: " + name, ex);
+                	log.error("Issue happened when get mbean info of: " + name, ex);
                 }
             }
         }

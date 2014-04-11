@@ -35,7 +35,7 @@
         %>
         </h1>
         <hr size=\"1\" noshade=\"noshade\">
-        <span class="errorText">An error has occurred.</span>
+        <span class="errorText">An error has occurred, please contact administrator.</span>
         <hr size=\"1\" noshade=\"noshade\">
         <h3><%= ServerInfo.getServerInfo() %></h3>
     </body>

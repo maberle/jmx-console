@@ -190,7 +190,8 @@ public class HtmlAdaptorServlet extends HttpServlet {
      * Display an mbeans attributes and operations
      */
     private void inspectMBean(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+    	String reqname = request.getParameter("name");
+        final String name = URLDecoder.decode(reqname, "UTF-8");
         log.trace("inspectMBean, name=" + name);
         try {
             MBeanData data = getMBeanData(name);
@@ -205,9 +206,9 @@ public class HtmlAdaptorServlet extends HttpServlet {
     /**
      * Update the writable attributes of an mbean
      */
-    private void updateAttributes(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
-        final String name = request.getParameter("name");
+    private void updateAttributes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String reqname = request.getParameter("name");
+        final String name = URLDecoder.decode(reqname, "UTF-8");
         log.trace("updateAttributes, name=" + name);
         Enumeration paramNames = request.getParameterNames();
         final HashMap attributes = new HashMap();
@@ -261,7 +262,8 @@ public class HtmlAdaptorServlet extends HttpServlet {
      * Invoke an mbean operation given the method name and its signature.
      */
     private void invokeOpByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String name = request.getParameter("name");
+    	String reqname = request.getParameter("name");
+        final String name = URLDecoder.decode(reqname, "UTF-8");
         log.trace("invokeOpByName, name=" + name);
         final String[] argTypes = request.getParameterValues("argType");
         final String[] args = getArgs(request);
