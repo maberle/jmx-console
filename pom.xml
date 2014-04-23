@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
-			<scope>provided</scope>
+			<scope>compile</scope>
 			<version>${version.dom4j}</version>
 		</dependency>
 	</dependencies>

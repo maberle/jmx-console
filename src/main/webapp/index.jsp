@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <%@page contentType="text/html"
-   import="java.net.*,java.util.*,org.jboss.jmx.adaptor.model.*,java.io.*"
+	import="java.net.*,
+   		java.util.*,
+   		org.jboss.jmx.adaptor.model.*,
+   		java.io.*
+   		"
 %>
 <!DOCTYPE html 
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

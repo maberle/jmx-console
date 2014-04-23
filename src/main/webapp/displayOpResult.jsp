@@ -3,7 +3,8 @@
    import="java.net.*,
            java.io.*,
    		   java.beans.PropertyEditor,
-   		   org.jboss.util.propertyeditor.PropertyEditors"
+   		   org.jboss.util.propertyeditor.PropertyEditors
+   		   "
 %>
 <%
 	String hostname = "";

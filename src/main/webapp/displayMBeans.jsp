@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-    import="java.net.*,java.util.*,org.jboss.jmx.adaptor.model.*,java.io.*"
+	import="
+	    java.net.*,
+	    java.util.*,
+	    org.jboss.jmx.adaptor.model.*,
+	    java.io.*
+	    "
 %>
 <%!
 	/**
