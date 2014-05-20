@@ -68,7 +68,11 @@ public class DateEditor extends PropertyEditorSupport
                // Tue Jan 04 00:00:00 PST 2005
                new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy"),
                // Wed, 4 Jul 2001 12:08:56 -0700
-               new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z")
+               new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z"), 
+               // 2001-01-01 12:08:56
+               new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), 
+               // 2001-01-01 12:08:56.000
+               new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"), 
             };
             return null;
          }
