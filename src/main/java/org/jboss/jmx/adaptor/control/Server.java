@@ -86,6 +86,8 @@ public class Server {
                 	// java.lang.IllegalStateException: JBAS019905
                 	log.debug("Cannot get mbean info of: " + name);
                 	log.debug("java.lang.IllegalStateException: " + ex1.getMessage());
+                } catch (javax.management.InstanceNotFoundException ex2) {
+                	log.info("Missing Instance: " + name);
                 } catch (Exception ex) {
                 	log.error("Issue happened when get mbean info of: " + name, ex);
                 }

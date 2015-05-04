@@ -11,7 +11,7 @@
       <security-domain>java:/jaas/jmx-console</security-domain>
    -->
        
-	<security-domain>jmx-console-policy</security-domain>
+	<security-domain>other</security-domain>
       
    
 </jboss-web>
